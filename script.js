@@ -10,7 +10,7 @@ function createBoard() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
-    for (let i = 0; i < 9; i += 3) {
+    /* for (let i = 0; i < 9; i += 3) {
         for (let j = 0; j < 9; j += 3) {
             if (i === j) {
                 fillBox(board, i, j);
@@ -23,6 +23,11 @@ function createBoard() {
             if (i !== j) {
                 fillBox(board, i, j);
             }
+        }
+    } */
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            checkTotal(board, i, j);
         }
     }
     return board;
@@ -44,16 +49,15 @@ function checkCell(board, x, y, num) {
     return isValid ? num : checkCell(board, x, y, getNum());
 }
 
-/* function checkBox(board, row, col, num) {
+function checkBox(board, row, col, num) {
     let isValid = true;
     for (let i = 0; i < 3 && isValid; i++) {
         console.log("Primo for checkBox");
         for (let j = 0; j < 3 && isValid; j++) {
             console.log("Secondo for checkBox");
-            if (i !== row && j !== col)
-                if (board[row + i][col + j] === num) {
-                    isValid = false;
-                }
+            if (board[row - (row % 3) + i][col - (col % 3) + j] === num) {
+                isValid = false;
+            }
         }
     }
     return isValid;
@@ -63,9 +67,8 @@ function checkRow(board, row, col, num) {
     let isValid = true;
     for (let i = 0; i < 9 && isValid; i++) {
         console.log("for checkRow");
-        if (i !== col)
-            if (board[row][i] === num)
-                isValid = false;
+        if (board[row][i] === num)
+            isValid = false;
     }
     return isValid;
 }
@@ -81,39 +84,17 @@ function checkColumn(board, row, col, num) {
     return isValid;
 }
 
-function checkTotal(board, row, col, num) {
-    while (!(checkBox(board, row, col, num) && checkRow(board, row, col, num) && checkColumn(board, row, col, num))) {
-        console.log("Sono in while");
-        num = getNum();
-    }
-    return num;
-} */
-
-function checkTotal(board, row, col, num) {
-    let isValid = true;
-    for (let i = 0; i < 3 && isValid; i++) {
-        console.log("Primo for checkBox");
-        for (let j = 0; j < 3 && isValid; j++) {
-            console.log("Secondo for checkBox");
-            if (i !== row && j !== col)
-                if (board[row + i][col + j] === num) {
-                    isValid = false;
-                }
+function checkTotal(board, row, col) {
+    for (let k = 0; k < col; k++) {
+        for (let i = 0; i < 9; i++) {
+            if ((checkBox(board, row, col, i) && checkRow(board, row, col, i) && checkColumn(board, row, col, i))) {
+                board[row][col] = i;
+                return;
+            }
         }
+        checkTotal(board, row, col - 1);
     }
-    for (let i = 0; i < 9 && isValid; i++) {
-        console.log("for checkRow");
-        if (i !== col)
-            if (board[row][i] === num)
-                isValid = false;
-    }
-    for (let i = 0; i < 9 && isValid; i++) {
-        console.log("for checkColumn");
-        if (i !== row)
-            if (board[i][col] === num)
-                isValid = false;
-    }
-    return isValid ? num : checkTotal(board, row, col, getNum());
+    checkTotal(board, row - 1, 8);
 }
 
 function fillBox(board, rowStart, colStart) {
