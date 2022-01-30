@@ -175,8 +175,21 @@ function toggleSelected() {
     this.classList.toggle("selected");
 }
 
-
-
 td.forEach((cell) => {
     cell.addEventListener('click', toggleSelected);
 });
+
+let buttons = document.querySelectorAll(".numbers button");
+
+function putNumber() {
+    let selected = document.querySelector(".selected");
+    if (!selected.classList.contains("untouchable")) {
+        if (this.classList.contains("backspace-button"))
+            selected.textContent = '';
+        selected.textContent = this.textContent;
+    }
+}
+
+buttons.forEach((button) => {
+    button.addEventListener('click', putNumber)
+})
