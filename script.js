@@ -1,7 +1,12 @@
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                BOARD GENERATION FUNCTIONS
+   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+// Returns a random number between 1 and 9
 function getNum() {
     return Math.round((Math.random() * 8) + 1);
 }
 
+// Checks if the number is valid in the corresponding 3x3 box
 function checkBox(board, x, y, num) {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
@@ -14,6 +19,7 @@ function checkBox(board, x, y, num) {
     return true;
 }
 
+// Checks if the number is valid in the corresponding row
 function checkRow(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
         if (i === col && i === 0)
@@ -26,6 +32,7 @@ function checkRow(board, row, col, num) {
     return true;
 }
 
+// Checks if the number is valid in the corresponding column
 function checkCol(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
         if (i === row && i === 0)
@@ -38,6 +45,7 @@ function checkCol(board, row, col, num) {
     return true;
 }
 
+// Creates and returns an array with 9 random numbers within 1 and 9 (randomly arranged)
 function fillRandomArray() {
     let array = [];
     for (let i = 0; i < 9; i++) {
@@ -50,7 +58,7 @@ function fillRandomArray() {
     return array;
 }
 
-
+// Solves a sudoku board (possibly empty) with a backtracking algorithm
 function solver(board) {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
@@ -74,6 +82,7 @@ function solver(board) {
     return true;
 }
 
+// Creates a sudoku board using the solver function
 function createBoard() {
     let board = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -92,6 +101,7 @@ function createBoard() {
         return "Errore";
 }
 
+// ========================= CONTROL FUNCTIONS ============================
 function findNumbers(board) {
     for (let k = 1; k <= 9; k++) {
         let counter = 0;
@@ -102,3 +112,7 @@ function findNumbers(board) {
         console.log(`Number ${k} is present ${counter} times.`);
     }
 }
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                    HTML FUNCTIONS
+   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
