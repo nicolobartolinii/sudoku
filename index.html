@@ -7,14 +7,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku</title>
     <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/988406799c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="header"></div>
-    <div class="content">
-        <div class="board"></div>
+    <div class="header">
+        <div class="white-sec">Sudoku</div>
     </div>
-    <div class="footer"></div>
+    <div class="content">
+        <div class="white-primary">
+            <div class="numbers">
+                <div class="left-col">
+                    <button>1</button>
+                    <button>3</button>
+                    <button>5</button>
+                    <button>7</button>
+                    <button>9</button>
+                </div>
+                <div class="right-col">
+                    <button>2</button>
+                    <button>4</button>
+                    <button>6</button>
+                    <button>8</button>
+                    <button><i class="fas fa-backspace"></i></button>
+                </div>
+              </div>
+                <table class="board">
+                    <colgroup><col><col><col>
+                    <colgroup><col><col><col>
+                    <colgroup><col><col><col>
+                    <tbody>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                    <tbody>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                    <tbody>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                     <tr> <td> <td> <td> <td> <td> <td> <td> <td> <td>
+                  </table>
+            </div>
+
+    </div>
+    <div class="footer">
+        <div class="white-sec">
+            Created by:
+            <a href="https://github.com/nicolobartolinii">
+                <i class="fab fa-github"></i> nicolobartolinii</a>
+        </div>
+    </div>
 </body>
 
 </html>
