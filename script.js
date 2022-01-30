@@ -82,6 +82,18 @@ function solver(board) {
     return true;
 }
 
+function clearCells(board, n) {
+    let positionsX = [];
+    let positionsY = [];
+    for (let i = 0; i < n; i++) {
+        positionsX[i] = getNum() - 1;
+        positionsY[i] = getNum() - 1;
+    }
+    for (let i = 0; i < n; i++) {
+        board[positionsX[i]][positionsY[i]] = 0;
+    }
+}
+
 // Creates a sudoku board using the solver function
 function createBoard() {
     let board = [
@@ -96,6 +108,7 @@ function createBoard() {
         [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
     if (solver(board)) {
+
         return board;
     } else
         return "Errore";
@@ -119,10 +132,11 @@ function findNumbers(board) {
 
 let board = createBoard();
 
+clearCells(board, 64);
+
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
         let cell = document.querySelector(`#c${i}${j}`);
-        console.log(cell);
-        cell.textContent = `${board[i][j]}`;
+        cell.textContent = `${board[i][j] === 0 ? '' : board[i][j]}`;
     }
 }
