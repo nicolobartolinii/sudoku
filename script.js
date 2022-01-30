@@ -190,7 +190,7 @@ clearCells(board, 61); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 
 
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-        let cell = document.querySelector(`#c${i}${j}`);
+        const cell = document.querySelector(`#c${i}${j}`);
         if (board[i][j] === 0) {
             cell.textContent = '';
         } else {
@@ -200,7 +200,7 @@ for (let i = 0; i < 9; i++) {
     }
 }
 
-let td = document.querySelectorAll("td");
+const td = document.querySelectorAll("td");
 
 function toggleSelected() {
     if (this.classList.contains("selected")) {
@@ -218,19 +218,19 @@ td.forEach((cell) => {
     cell.addEventListener('click', toggleSelected);
 });
 
-let buttons = document.querySelectorAll(".numbers button");
+const buttons = document.querySelectorAll(".numbers button");
 
 function putNumber() {
-    let selected = document.querySelector(".selected");
+    const selected = document.querySelector(".selected");
     if (!selected.classList.contains("untouchable")) {
         if (this.classList.contains("backspace-button"))
             selected.textContent = '';
         selected.textContent = this.textContent;
         selected.classList.add("player-guess");
-        let row = parseInt(selected.outerHTML.charAt(9));
-        let col = parseInt(selected.outerHTML.charAt(10));
-        let num = parseInt(this.textContent);
-        let valid = checkBoxString(board, row, col, num) && checkRowString(board, row, col, num) && checkColString(board, row, col, num);
+        const row = parseInt(selected.outerHTML.charAt(9));
+        const col = parseInt(selected.outerHTML.charAt(10));
+        const num = parseInt(this.textContent);
+        const valid = checkBoxString(board, row, col, num) && checkRowString(board, row, col, num) && checkColString(board, row, col, num);
         if (!valid)
             selected.classList.add("wrong");
         else if (valid && selected.classList.contains("wrong"))
@@ -240,4 +240,4 @@ function putNumber() {
 
 buttons.forEach((button) => {
     button.addEventListener('click', putNumber)
-})
+});
