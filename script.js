@@ -82,15 +82,32 @@ function solver(board) {
     return true;
 }
 
+function isArrayInArray(array, otherArray) {
+    let otherArrayAsString = JSON.stringify(otherArray);
+
+    let contains = array.some(function (e) {
+        return JSON.stringify(e) === otherArrayAsString;
+    });
+    return contains;
+}
+
 function clearCells(board, n) {
-    let positionsX = [];
-    let positionsY = [];
+    let positions = [];
     for (let i = 0; i < n; i++) {
-        positionsX[i] = getNum() - 1;
-        positionsY[i] = getNum() - 1;
+        let numA = getNum() - 1;
+        let numB = getNum() - 1;
+        let num = [numA, numB];
+        while (isArrayInArray(positions, num)) {
+            console.log("Entro nel while");
+            numA = getNum() - 1;
+            numB = getNum() - 1;
+            num = [numA, numB];
+        }
+        positions.push([numA, numB]);
     }
+    console.log(positions);
     for (let i = 0; i < n; i++) {
-        board[positionsX[i]][positionsY[i]] = 0;
+        board[positions[i][0]][positions[i][1]] = 0;
     }
 }
 
@@ -132,7 +149,7 @@ function findNumbers(board) {
 
 let board = createBoard();
 
-clearCells(board, 64);
+clearCells(board, 61); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 20 => 61
 
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
