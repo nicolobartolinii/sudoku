@@ -152,7 +152,12 @@ clearCells(board, 61); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
         let cell = document.querySelector(`#c${i}${j}`);
-        cell.textContent = `${board[i][j] === 0 ? '' : board[i][j]}`;
+        if (board[i][j] === 0) {
+            cell.textContent = '';
+        } else {
+            cell.textContent = board[i][j];
+            cell.classList.add("untouchable");
+        }
     }
 }
 
