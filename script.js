@@ -116,3 +116,13 @@ function findNumbers(board) {
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                                     HTML FUNCTIONS
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+let board = createBoard();
+
+for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+        let cell = document.querySelector(`#c${i}${j}`);
+        console.log(cell);
+        cell.textContent = `${board[i][j]}`;
+    }
+}
