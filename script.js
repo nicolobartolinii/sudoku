@@ -19,6 +19,19 @@ function checkBox(board, x, y, num) {
     return true;
 }
 
+// Checks if the number is valid in the corresponding 3x3 box considering empty strings
+function checkBoxString(board, x, y, num) {
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if ((i === x % 3 && j === y % 3) || board[x - (x % 3) + i][y - (y % 3) + j] === '')
+                continue;
+            else if (parseInt(board[x - (x % 3) + i][y - (y % 3) + j]) === num)
+                return false;
+        }
+    }
+    return true;
+}
+
 // Checks if the number is valid in the corresponding row
 function checkRow(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
@@ -32,6 +45,19 @@ function checkRow(board, row, col, num) {
     return true;
 }
 
+// Checks if the number is valid in the corresponding row considering empty strings
+function checkRowString(board, row, col, num) {
+    for (let i = 0; i < 9; i++) {
+        if ((i === col /* && i === 0 */ ) || board[row][i] === '')
+            continue;
+        /* else if (i === col && i === 8)
+            continue; */
+        if (parseInt(board[row][i]) === num)
+            return false;
+    }
+    return true;
+}
+
 // Checks if the number is valid in the corresponding column
 function checkCol(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
@@ -40,6 +66,19 @@ function checkCol(board, row, col, num) {
         else if (i === row && i === 8)
             continue;
         else if (board[i][col] === num)
+            return false;
+    }
+    return true;
+}
+
+// Checks if the number is valid in the corresponding column considering empty strings
+function checkColString(board, row, col, num) {
+    for (let i = 0; i < 9; i++) {
+        if ((i === row /* && i === 0 */ ) || board[row][i] === '')
+            continue;
+        /* else if (i === row && i === 8)
+            continue; */
+        else if (parseInt(board[i][col]) === num)
             return false;
     }
     return true;
@@ -187,6 +226,15 @@ function putNumber() {
         if (this.classList.contains("backspace-button"))
             selected.textContent = '';
         selected.textContent = this.textContent;
+        selected.classList.add("player-guess");
+        let row = parseInt(selected.outerHTML.charAt(9));
+        let col = parseInt(selected.outerHTML.charAt(10));
+        let num = parseInt(this.textContent);
+        let valid = checkBoxString(board, row, col, num) && checkRowString(board, row, col, num) && checkColString(board, row, col, num);
+        if (!valid)
+            selected.classList.add("wrong");
+        else if (valid && selected.classList.contains("wrong"))
+            selected.classList.remove("wrong");
     }
 }
 

@@ -118,3 +118,11 @@ a {
 .selected {
     background: #212121;
 }
+
+.player-guess {
+    font-weight: 300;
+}
+
+.wrong {
+    color: #ff4c2c;
+}
