@@ -102,3 +102,7 @@ a {
     text-decoration: none;
     color: #a358ff
 }
+
+.selected {
+    background: #212121;
+}

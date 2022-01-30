@@ -98,14 +98,12 @@ function clearCells(board, n) {
         let numB = getNum() - 1;
         let num = [numA, numB];
         while (isArrayInArray(positions, num)) {
-            console.log("Entro nel while");
             numA = getNum() - 1;
             numB = getNum() - 1;
             num = [numA, numB];
         }
         positions.push([numA, numB]);
     }
-    console.log(positions);
     for (let i = 0; i < n; i++) {
         board[positions[i][0]][positions[i][1]] = 0;
     }
@@ -157,3 +155,23 @@ for (let i = 0; i < 9; i++) {
         cell.textContent = `${board[i][j] === 0 ? '' : board[i][j]}`;
     }
 }
+
+let td = document.querySelectorAll("td");
+
+function toggleSelected() {
+    if (this.classList.contains("selected")) {
+        this.classList.toggle("selected");
+        return;
+    }
+    td.forEach((selected) => {
+        if (selected.classList.contains("selected"))
+            selected.classList.remove("selected");
+    });
+    this.classList.toggle("selected");
+}
+
+
+
+td.forEach((cell) => {
+    cell.addEventListener('click', toggleSelected);
+});
