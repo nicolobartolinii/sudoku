@@ -48,7 +48,7 @@ function checkRow(board, row, col, num) {
 // Checks if the number is valid in the corresponding row considering empty strings
 function checkRowString(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
-        if ((i === col /* && i === 0 */ ) || board[row][i] === '')
+        if ((i === col /* && i === 0 */) || board[row][i] === '')
             continue;
         /* else if (i === col && i === 8)
             continue; */
@@ -74,7 +74,7 @@ function checkCol(board, row, col, num) {
 // Checks if the number is valid in the corresponding column considering empty strings
 function checkColString(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
-        if ((i === row /* && i === 0 */ ) || board[row][i] === '')
+        if ((i === row /* && i === 0 */) || board[row][i] === '')
             continue;
         /* else if (i === row && i === 8)
             continue; */
@@ -206,7 +206,6 @@ function findNumbers(board) {
 let board = createBoard();
 let solvedBoard = copyBoard(board);
 solver(solvedBoard);
-console.log(solvedBoard);
 
 clearCells(board, 61); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 20 => 61
 
@@ -245,14 +244,18 @@ const buttons = document.querySelectorAll(".numbers button");
 function putNumber() {
     const selected = document.querySelector(".selected");
     if (!selected.classList.contains("untouchable")) {
-        if (this.classList.contains("backspace-button"))
-            selected.textContent = '';
-        selected.textContent = this.textContent;
-        selected.classList.add("player-guess");
         const row = parseInt(selected.outerHTML.charAt(9));
         const col = parseInt(selected.outerHTML.charAt(10));
         const num = parseInt(this.textContent);
-        const valid = checkBoxString(solvedBoard, row, col, num) && checkRowString(solvedBoard, row, col, num) && checkColString(solvedBoard, row, col, num);
+        if (this.classList.contains("backspace-button")) {
+            selected.textContent = '';
+            board[row][col] = 0;
+            return;
+        }
+        selected.textContent = this.textContent;
+        selected.classList.add("player-guess");
+        board[row][col] = num;
+        const valid = checkBoxString(board, row, col, num) && checkRowString(board, row, col, num) && checkColString(board, row, col, num);
         if (!valid)
             selected.classList.add("wrong");
         else if (valid && selected.classList.contains("wrong"))
