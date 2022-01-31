@@ -71,8 +71,10 @@ body.dark {
 .numbers {
     /* background: var(--numbers-background); */
     display: flex;
-    min-height: 11vw;
+    min-height: 15rem;
+    min-width: 6rem;
     border: var(--border-color) solid medium;
+    flex: 0 1 auto;
 }
 
 .left-col,
@@ -84,9 +86,9 @@ body.dark {
 button {
     font-family: "Poppins", "Roboto", sans-serif;
     text-align: center;
-    font-size: 1.2vw;
-    height: 2.22vw;
-    width: 2.22vw;
+    font-size: 1.5rem;
+    min-height: 3rem;
+    min-width: 3rem;
     background: var(--numbers-background);
     border: var(--border-color) solid thin;
     color: var(--numbers-text-color);
