@@ -146,9 +146,10 @@ td:hover {
     background: var(--primary-background);
 }
 
-a {
+a,
+a:visited {
     text-decoration: none;
-    /* color: #BB86FC */
+    color: #ff893b;
 }
 
 .selected {
