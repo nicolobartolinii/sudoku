@@ -241,3 +241,10 @@ function putNumber() {
 buttons.forEach((button) => {
     button.addEventListener('click', putNumber)
 });
+
+const themeSwitch = document.querySelector(".switch input");
+const body = document.querySelector("body");
+
+themeSwitch.addEventListener('change', () => {
+    body.classList.toggle("dark");
+});

@@ -20,6 +20,19 @@ body {
     margin: 0;
     color: var(--text-color-default);
     min-height: 100vh;
+    transition: background 0.7s;
+    transition: color 0.7s;
+}
+
+body.dark {
+    --backbackground: #F0F0F0;
+    --primary-background: #364F6B;
+    --numbers-background: #F5F5F5;
+    --hover-color: #a2b7d0;
+    --border-color: #364F6B;
+    --selected-color: #364f6b;
+    --text-color-default: #3FC1C9;
+    --numbers-text-color: #5c82ad;
 }
 
 .header {
@@ -30,6 +43,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background 0.7s;
 }
 
 .white-sec {
@@ -65,7 +79,6 @@ body {
 .right-col {
     display: flex;
     flex-direction: column;
-
 }
 
 button {
@@ -77,7 +90,7 @@ button {
     background: var(--numbers-background);
     border: var(--border-color) solid thin;
     color: var(--numbers-text-color);
-    transition: background 200ms cubic-bezier(0, 0.21, 0, 1)
+    transition: background 0.7s;
 }
 
 button i {
@@ -85,11 +98,12 @@ button i {
 }
 
 button:hover {
-    background: var(--hover-color);
+    background-color: var(--hover-color);
+    transition: background-color 200ms cubic-bezier(0, 0.21, 0, 1)
 }
 
 button:active {
-    background: var(--border-color);
+    background-color: var(--border-color);
 }
 
 
@@ -104,6 +118,7 @@ button:active {
 
 table {
     border-collapse: collapse;
+    transition: background 0.7s;
 }
 
 colgroup,
