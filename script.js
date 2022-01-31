@@ -121,6 +121,25 @@ function solver(board) {
     return true;
 }
 
+function copyBoard(board) {
+    let newBoard = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++)
+            newBoard[i][j] = board[i][j];
+    }
+    return newBoard;
+}
+
 function isArrayInArray(array, otherArray) {
     let otherArrayAsString = JSON.stringify(otherArray);
 
@@ -185,6 +204,9 @@ function findNumbers(board) {
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 let board = createBoard();
+let solvedBoard = copyBoard(board);
+solver(solvedBoard);
+console.log(solvedBoard);
 
 clearCells(board, 61); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 20 => 61
 
@@ -230,7 +252,7 @@ function putNumber() {
         const row = parseInt(selected.outerHTML.charAt(9));
         const col = parseInt(selected.outerHTML.charAt(10));
         const num = parseInt(this.textContent);
-        const valid = checkBoxString(board, row, col, num) && checkRowString(board, row, col, num) && checkColString(board, row, col, num);
+        const valid = checkBoxString(solvedBoard, row, col, num) && checkRowString(solvedBoard, row, col, num) && checkColString(solvedBoard, row, col, num);
         if (!valid)
             selected.classList.add("wrong");
         else if (valid && selected.classList.contains("wrong"))
