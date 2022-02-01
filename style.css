@@ -70,7 +70,7 @@ body.light {
 .header-board {
     display: flex;
     justify-content: space-between;
-    min-width: 23.5rem;
+    min-width: 29rem;
     margin-bottom: 0.2rem;
 }
 
@@ -83,6 +83,7 @@ body.light {
     align-self: flex-start;
     transition: background 0.2s;
     border: none;
+    margin-bottom: 0.5rem;
 }
 
 .header-board button:hover {
@@ -145,8 +146,8 @@ button:active {
 
 .board {
     background: var(--numbers-background);
-    min-width: 20vw;
-    min-height: 20vw;
+    min-width: 30rem;
+    min-height: 30rem;
     font-size: 1.8rem;
     font-weight: bold;
     /* border: 0.2rem solid #242424; */
