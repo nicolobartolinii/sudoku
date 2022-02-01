@@ -9,6 +9,8 @@
     --border-color: #202020;
     --selected-color: #212121;
     --text-color-default: #bb86fc;
+    --hover-color-restart: #a560fb;
+    --active-color-restart: #903afa;
     --numbers-text-color: #404040;
 }
 
@@ -32,6 +34,8 @@ body.light {
     --border-color: #364f6b;
     --selected-color: #364f6b;
     --text-color-default: #3fc1c9;
+    --hover-color-restart: #34b1b9;
+    --active-color-restart: #2e9da4;
     --numbers-text-color: #5c82ad;
 }
 
@@ -61,7 +65,41 @@ body.light {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+}
+
+.header-board {
+    display: flex;
+    justify-content: space-between;
+    min-width: 20vw;
+    margin-bottom: 0.2rem;
+}
+
+.header-board button {
+    border-radius: 1.5rem;
+    background: var(--text-color-default);
+    font-size: 1.2rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    align-self: flex-start;
+    transition: background 0.2s;
+    border: none;
+}
+
+.header-board button:hover {
+    background: var(--hover-color-restart);
+}
+
+.header-board button:active {
+    background: var(--active-color-restart);
+}
+
+.header-board div {
+    width: 5vw;
+    align-self: flex-end;
+}
+
+.error-counter {
+    text-align: right;
 }
 
 .numbers {
@@ -72,6 +110,7 @@ body.light {
     min-width: 15rem;
     border: var(--border-color) solid medium;
     flex: 0 1 auto;
+    margin-top: 1rem;
 }
 
 .left-col,
