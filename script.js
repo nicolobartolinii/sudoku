@@ -1,5 +1,5 @@
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                BOARD GENERATION FUNCTIONS
+                                BOARD RELATED FUNCTIONS
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 // Returns a random number between 1 and 9
 function getNum() {
@@ -121,6 +121,18 @@ function solver(board) {
     return true;
 }
 
+// Checks if a board is equal to another board
+function areBoardsSame(board, otherBoard) {
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (board[i][j] !== otherBoard[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+// Copies a board into a new board
 function copyBoard(board) {
     let newBoard = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -140,6 +152,7 @@ function copyBoard(board) {
     return newBoard;
 }
 
+// Checks if an array contains another array
 function isArrayInArray(array, otherArray) {
     let otherArrayAsString = JSON.stringify(otherArray);
 
@@ -149,6 +162,7 @@ function isArrayInArray(array, otherArray) {
     return contains;
 }
 
+// Randomly clears (setting to 0) n cells in a board
 function clearCells(board, n) {
     let positions = [];
     for (let i = 0; i < n; i++) {
@@ -207,7 +221,7 @@ let board = createBoard();
 let solvedBoard = copyBoard(board);
 solver(solvedBoard);
 
-clearCells(board, 61); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 20 => 61
+clearCells(board, 51); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 20 => 61
 
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
@@ -222,6 +236,8 @@ for (let i = 0; i < 9; i++) {
 }
 
 const td = document.querySelectorAll("td");
+const tbody = document.querySelectorAll("tbody");
+const colgroup = document.querySelectorAll("colgroup");
 
 function toggleSelected() {
     if (this.classList.contains("selected")) {
@@ -250,7 +266,6 @@ function putNumber() {
         if (this.classList.contains("backspace-button")) {
             selected.textContent = '';
             board[row][col] = 0;
-            return;
         }
         selected.textContent = this.textContent;
         selected.classList.add("player-guess");
@@ -260,6 +275,28 @@ function putNumber() {
             selected.classList.add("wrong");
         else if (valid && selected.classList.contains("wrong"))
             selected.classList.remove("wrong");
+        const win = areBoardsSame(board, solvedBoard);
+        if (win) {
+            td.forEach((cell) => {
+                cell.classList.add("win");
+            });
+            tbody.forEach((body) => {
+                body.classList.add("win");
+            });
+            colgroup.forEach((col) => {
+                col.classList.add("win");
+            });
+        } else if (!win && selected.classList.contains("win")) {
+            td.forEach((cell) => {
+                cell.classList.remove("win");
+            });
+            tbody.forEach((body) => {
+                body.classList.remove("win");
+            });
+            colgroup.forEach((col) => {
+                col.classList.remove("win");
+            });
+        }
     }
 }
 
