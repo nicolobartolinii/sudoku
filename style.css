@@ -24,7 +24,7 @@ body {
     transition: color 0.7s;
 }
 
-body.dark {
+body.light {
     --backbackground: #f0f0f0;
     --primary-background: #364f6b;
     --numbers-background: #f5f5f5;

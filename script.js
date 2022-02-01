@@ -48,7 +48,7 @@ function checkRow(board, row, col, num) {
 // Checks if the number is valid in the corresponding row considering empty strings
 function checkRowString(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
-        if ((i === col /* && i === 0 */) || board[row][i] === '')
+        if ((i === col /* && i === 0 */ ) || board[row][i] === '')
             continue;
         /* else if (i === col && i === 8)
             continue; */
@@ -74,7 +74,7 @@ function checkCol(board, row, col, num) {
 // Checks if the number is valid in the corresponding column considering empty strings
 function checkColString(board, row, col, num) {
     for (let i = 0; i < 9; i++) {
-        if ((i === row /* && i === 0 */) || board[row][i] === '')
+        if ((i === row /* && i === 0 */ ) || board[row][i] === '')
             continue;
         /* else if (i === row && i === 8)
             continue; */
@@ -308,5 +308,5 @@ const themeSwitch = document.querySelector(".switch input");
 const body = document.querySelector("body");
 
 themeSwitch.addEventListener('change', () => {
-    body.classList.toggle("dark");
+    body.classList.toggle("light");
 });
