@@ -2,242 +2,238 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 :root {
-  --backbackground: #121212;
-  --primary-background: #191919;
-  --numbers-background: #171717;
-  --hover-color: #242424;
-  --border-color: #202020;
-  --selected-color: #212121;
-  --text-color-default: #bb86fc;
-  --numbers-text-color: #404040;
+    --backbackground: #121212;
+    --primary-background: #191919;
+    --numbers-background: #171717;
+    --hover-color: #242424;
+    --border-color: #202020;
+    --selected-color: #212121;
+    --text-color-default: #bb86fc;
+    --numbers-text-color: #404040;
 }
 
 body {
-  font-family: "Poppins", "Roboto", sans-serif;
-  background: var(--backbackground);
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  color: var(--text-color-default);
-  min-height: 100vh;
-  transition: background 0.7s;
-  transition: color 0.7s;
+    font-family: "Poppins", "Roboto", sans-serif;
+    background: var(--backbackground);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: var(--text-color-default);
+    min-height: 100vh;
+    transition: background 0.7s;
+    transition: color 0.7s;
 }
 
 body.dark {
-  --backbackground: #f0f0f0;
-  --primary-background: #364f6b;
-  --numbers-background: #f5f5f5;
-  --hover-color: #a2b7d0;
-  --border-color: #364f6b;
-  --selected-color: #364f6b;
-  --text-color-default: #3fc1c9;
-  --numbers-text-color: #5c82ad;
+    --backbackground: #f0f0f0;
+    --primary-background: #364f6b;
+    --numbers-background: #f5f5f5;
+    --hover-color: #a2b7d0;
+    --border-color: #364f6b;
+    --selected-color: #364f6b;
+    --text-color-default: #3fc1c9;
+    --numbers-text-color: #5c82ad;
 }
 
 .header {
-  text-align: center;
-  font-weight: bolder;
-  font-size: 40px;
-  background: var(--primary-background);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background 0.7s;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 40px;
+    background: var(--primary-background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.7s;
 }
 
 .white-sec {
-  /* background: rgba(255, 255, 255, 0.04); */
-  padding: 0.5rem;
+    /* background: rgba(255, 255, 255, 0.04); */
+    padding: 0.5rem;
 }
 
 .footer .white-sec {
-  padding: 0.7rem;
+    padding: 0.7rem;
 }
 
 .content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.white-primary {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .numbers {
-  /* background: var(--numbers-background); */
-  display: flex;
-  min-height: 15rem;
-  min-width: 6rem;
-  border: var(--border-color) solid medium;
-  flex: 0 1 auto;
+    /* background: var(--numbers-background); */
+    display: flex;
+    flex-direction: column;
+    min-height: 6rem;
+    min-width: 15rem;
+    border: var(--border-color) solid medium;
+    flex: 0 1 auto;
 }
 
 .left-col,
 .right-col {
-  display: flex;
-  flex-direction: column;
+    display: flex;
 }
 
 button {
-  font-family: "Poppins", "Roboto", sans-serif;
-  text-align: center;
-  font-size: 1.5rem;
-  min-height: 3rem;
-  min-width: 3rem;
-  background: var(--numbers-background);
-  border: var(--border-color) solid thin;
-  color: var(--numbers-text-color);
-  transition: background 0.7s;
+    font-family: "Poppins", "Roboto", sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
+    min-height: 3rem;
+    min-width: 3rem;
+    background: var(--numbers-background);
+    border: var(--border-color) solid thin;
+    color: var(--numbers-text-color);
+    transition: background 0.7s;
 }
 
 button i {
-  transform: scale(0.9) translateY(0.05vw);
+    transform: scale(0.9) translateY(0.05vw);
 }
 
 button:hover {
-  background-color: var(--hover-color);
-  transition: background-color 200ms cubic-bezier(0, 0.21, 0, 1);
+    background-color: var(--hover-color);
+    transition: background-color 200ms cubic-bezier(0, 0.21, 0, 1);
 }
 
 button:active {
-  background-color: var(--border-color);
+    background-color: var(--border-color);
 }
 
 .board {
-  background: var(--numbers-background);
-  min-width: 20vw;
-  min-height: 20vw;
-  font-size: 1.8rem;
-  font-weight: bold;
-  /* border: 0.2rem solid #242424; */
+    background: var(--numbers-background);
+    min-width: 20vw;
+    min-height: 20vw;
+    font-size: 1.8rem;
+    font-weight: bold;
+    /* border: 0.2rem solid #242424; */
 }
 
 table {
-  border-collapse: collapse;
-  transition: background 0.7s;
+    border-collapse: collapse;
+    transition: background 0.7s;
 }
 
 colgroup,
 tbody {
-  border: var(--border-color) solid medium;
-  transition: border 200ms ease-in-out;
+    border: var(--border-color) solid medium;
+    transition: border 200ms ease-in-out;
 }
 
 td {
-  border: var(--border-color) solid thin;
-  height: 1.4em;
-  width: 1.4em;
-  text-align: center;
-  padding: 0;
-  transition: background 200ms cubic-bezier(0, 0.21, 0, 1);
-  transition: border 200ms ease-in-out;
-  transition: color 200ms ease-in-out;
+    border: var(--border-color) solid thin;
+    height: 1.4em;
+    width: 1.4em;
+    text-align: center;
+    padding: 0;
+    transition: background 200ms cubic-bezier(0, 0.21, 0, 1);
+    transition: border 200ms ease-in-out;
+    transition: color 200ms ease-in-out;
 }
 
 colgroup.win,
 tbody.win {
-  border: #50c878 solid medium;
+    border: #50c878 solid medium;
 }
 
 td.win {
-  border: #50c878 solid thin;
-  color: #50c878;
+    border: #50c878 solid thin;
+    color: #50c878;
 }
 
 td:hover {
-  background: var(--hover-color);
+    background: var(--hover-color);
 }
 
 .footer {
-  text-align: center;
-  background: var(--primary-background);
+    text-align: center;
+    background: var(--primary-background);
 }
 
 a,
 a:visited {
-  text-decoration: none;
-  color: #ff893b;
+    text-decoration: none;
+    color: #ff893b;
 }
 
 .selected {
-  background: var(--selected-color);
+    background: var(--selected-color);
 }
 
 .player-guess {
-  font-weight: 300;
+    font-weight: 300;
 }
 
 .wrong {
-  color: #ff4c2c;
+    color: #ff4c2c;
 }
 
 /* The switch - the box around the slider */
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin-right: 2rem;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 2rem;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 /* The slider */
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--numbers-text-color);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--numbers-text-color);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
-input:checked + .slider {
-  background-color: var(--text-color-default);
+input:checked+.slider {
+    background-color: var(--text-color-default);
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
-  font-size: 12px;
-  text-align: center;
+    border-radius: 34px;
+    font-size: 12px;
+    text-align: center;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+    border-radius: 50%;
 }
