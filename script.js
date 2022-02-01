@@ -217,96 +217,115 @@ function findNumbers(board) {
                                     HTML FUNCTIONS
    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-let board = createBoard();
-let solvedBoard = copyBoard(board);
-solver(solvedBoard);
+startNewGame();
 
-clearCells(board, 51); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 20 => 61
+function startNewGame() {
+    let board = createBoard();
+    let solvedBoard = copyBoard(board);
+    solver(solvedBoard);
 
-for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-        const cell = document.querySelector(`#c${i}${j}`);
-        if (board[i][j] === 0) {
-            cell.textContent = '';
-        } else {
-            cell.textContent = board[i][j];
-            cell.classList.add("untouchable");
+    clearCells(board, 51); // EASY 38 => 43, MEDIUM 30 => 51, HARD 25 => 56, EXPERT 20 => 61
+
+    const themeSwitch = document.querySelector(".switch input");
+    const body = document.querySelector("body");
+    const td = document.querySelectorAll("td");
+    const tbody = document.querySelectorAll("tbody");
+    const colgroup = document.querySelectorAll("colgroup");
+    const buttons = document.querySelectorAll(".numbers button");
+    const restartButton = document.querySelector(".restart-button");
+    const timer = document.querySelector(".timer");
+    const errorCounterText = document.querySelector(".error-counter");
+
+    let errorCounter = 0;
+    setErrorCounter();
+
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            const cell = document.querySelector(`#c${i}${j}`);
+            if (board[i][j] === 0) {
+                cell.textContent = '';
+            } else {
+                cell.textContent = board[i][j];
+                cell.classList.add("untouchable");
+            }
         }
     }
-}
 
-const td = document.querySelectorAll("td");
-const tbody = document.querySelectorAll("tbody");
-const colgroup = document.querySelectorAll("colgroup");
-
-function toggleSelected() {
-    if (this.classList.contains("selected")) {
+    function toggleSelected() {
+        if (this.classList.contains("selected")) {
+            this.classList.toggle("selected");
+            return;
+        }
+        td.forEach((selected) => {
+            if (selected.classList.contains("selected"))
+                selected.classList.remove("selected");
+        });
         this.classList.toggle("selected");
-        return;
     }
-    td.forEach((selected) => {
-        if (selected.classList.contains("selected"))
-            selected.classList.remove("selected");
+
+    td.forEach((cell) => {
+        cell.addEventListener('click', toggleSelected);
     });
-    this.classList.toggle("selected");
-}
 
-td.forEach((cell) => {
-    cell.addEventListener('click', toggleSelected);
-});
 
-const buttons = document.querySelectorAll(".numbers button");
-
-function putNumber() {
-    const selected = document.querySelector(".selected");
-    if (!selected.classList.contains("untouchable")) {
-        const row = parseInt(selected.outerHTML.charAt(9));
-        const col = parseInt(selected.outerHTML.charAt(10));
-        const num = parseInt(this.textContent);
-        if (this.classList.contains("backspace-button")) {
-            selected.textContent = '';
-            board[row][col] = 0;
-        }
-        selected.textContent = this.textContent;
-        selected.classList.add("player-guess");
-        board[row][col] = num;
-        const valid = checkBoxString(board, row, col, num) && checkRowString(board, row, col, num) && checkColString(board, row, col, num);
-        if (!valid)
-            selected.classList.add("wrong");
-        else if (valid && selected.classList.contains("wrong"))
-            selected.classList.remove("wrong");
-        const win = areBoardsSame(board, solvedBoard);
-        if (win) {
-            td.forEach((cell) => {
-                cell.classList.add("win");
-            });
-            tbody.forEach((body) => {
-                body.classList.add("win");
-            });
-            colgroup.forEach((col) => {
-                col.classList.add("win");
-            });
-        } else if (!win && selected.classList.contains("win")) {
-            td.forEach((cell) => {
-                cell.classList.remove("win");
-            });
-            tbody.forEach((body) => {
-                body.classList.remove("win");
-            });
-            colgroup.forEach((col) => {
-                col.classList.remove("win");
-            });
+    function putNumber() {
+        const selected = document.querySelector(".selected");
+        if (!selected.classList.contains("untouchable")) {
+            const row = parseInt(selected.outerHTML.charAt(9));
+            const col = parseInt(selected.outerHTML.charAt(10));
+            const num = parseInt(this.textContent);
+            if (this.classList.contains("backspace-button")) {
+                selected.textContent = '';
+                board[row][col] = 0;
+            }
+            selected.textContent = this.textContent;
+            selected.classList.add("player-guess");
+            board[row][col] = num;
+            const valid = checkBoxString(board, row, col, num) && checkRowString(board, row, col, num) && checkColString(board, row, col, num);
+            if (!valid) {
+                selected.classList.add("wrong");
+                errorCounter++;
+                console.log(errorCounter);
+                setErrorCounter();
+            } else if (valid && selected.classList.contains("wrong")) {
+                selected.classList.remove("wrong");
+            }
+            const win = areBoardsSame(board, solvedBoard);
+            if (win) {
+                td.forEach((cell) => {
+                    cell.classList.add("win");
+                });
+                tbody.forEach((body) => {
+                    body.classList.add("win");
+                });
+                colgroup.forEach((col) => {
+                    col.classList.add("win");
+                });
+            } else if (!win && selected.classList.contains("win")) {
+                td.forEach((cell) => {
+                    cell.classList.remove("win");
+                });
+                tbody.forEach((body) => {
+                    body.classList.remove("win");
+                });
+                colgroup.forEach((col) => {
+                    col.classList.remove("win");
+                });
+            }
         }
     }
+
+    function setErrorCounter() {
+        errorCounterText.textContent = `Errors: ${errorCounter}`;
+    }
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', putNumber)
+    });
+
+    themeSwitch.addEventListener('change', () => {
+        body.classList.toggle("light");
+    });
+
+    restartButton.addEventListener('click', startNewGame);
 }
-
-buttons.forEach((button) => {
-    button.addEventListener('click', putNumber)
-});
-
-const themeSwitch = document.querySelector(".switch input");
-const body = document.querySelector("body");
-
-themeSwitch.addEventListener('change', () => {
-    body.classList.toggle("light");
-});
